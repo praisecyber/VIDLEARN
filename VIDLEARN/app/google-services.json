@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "51694219322",
+    "project_id": "com-vidlearn-c8e6f",
+    "storage_bucket": "com-vidlearn-c8e6f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51694219322:android:6dec5b253d2c4296c34503",
+        "android_client_info": {
+          "package_name": "com.vidlearn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5E_BnlvRuZCZnjnuGgHgu55qInipNqWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
