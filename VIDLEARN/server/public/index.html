@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidlearn. - Learn by Watching and Doing</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .bg-primary { background-color: #0b6b3a; }
+        .text-primary { color: #0b6b3a; }
+        .border-primary { border-color: #0b6b3a; }
+        .bg-secondary { background-color: #1f8f55; }
+        .bg-dark { background-color: #111114; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Top Navigation -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <a href="#" onclick="showHome()" class="text-2xl font-black tracking-tight">
+                    <span class="text-primary">Vid</span><span class="text-gray-900">learn</span><span class="text-emerald-500">.</span>
+                </a>
+                <nav class="hidden md:flex space-x-4 text-sm font-medium">
+                    <a href="#" onclick="showHome()" class="text-gray-700 hover:text-primary">Explore</a>
+                    <a href="#" onclick="showMyLearning()" class="text-gray-700 hover:text-primary">My Learning</a>
+                    <a href="#" onclick="showPractice()" class="text-gray-700 hover:text-primary">Practice Coach</a>
+                    <a href="#" onclick="showTeach()" class="text-gray-700 hover:text-primary">Teach</a>
+                </nav>
+            </div>
+            <div class="flex-1 max-w-md mx-6 hidden sm:block">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                        <i class="fa-solid fa-search"></i>
+                    </span>
+                    <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Search for anything (e.g. Python, Design)..." class="w-full pl-10 pr-4 py-2 bg-gray-100 border border-gray-300 rounded-full text-sm focus:outline-none focus:border-primary focus:bg-white">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4" id="authNav">
+                <button onclick="showLogin()" class="px-4 py-2 border border-gray-900 rounded text-sm font-bold hover:bg-gray-100">Log in</button>
+                <button onclick="showLogin()" class="px-4 py-2 bg-primary text-white rounded text-sm font-bold hover:bg-emerald-800">Sign up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1" id="appMain">
+        <!-- Home / Landing View -->
+        <div id="homeView">
+            <!-- Hero Section -->
+            <section class="bg-dark text-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+                <div class="absolute right-0 top-0 bottom-0 w-1/2 bg-primary opacity-85 rounded-l-full hidden lg:block"></div>
+                <div class="max-w-7xl mx-auto relative z-10">
+                    <div class="max-w-xl bg-white text-gray-900 p-8 shadow-2xl rounded-lg">
+                        <h1 class="text-3xl sm:text-4xl font-black tracking-tight mb-4">Learn by watching and doing</h1>
+                        <p class="text-gray-600 text-base mb-6">Short video lessons with a built-in practice sandbox. Pass the practice to unlock the next video and earn your certificate.</p>
+                        <button onclick="document.getElementById('coursesSection').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 bg-primary text-white font-bold rounded shadow hover:bg-emerald-800 transition">Explore Courses</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categories Bar -->
+            <div class="bg-white border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-8 overflow-x-auto py-3 text-sm font-semibold">
+                    <button onclick="filterCategory('All')" class="cat-btn text-primary border-b-2 border-primary pb-1 whitespace-nowrap">All Categories</button>
+                    <button onclick="filterCategory('Design')" class="cat-btn text-gray-600 hover:text-primary pb-1 whitespace-nowrap">Design</button>
+                    <button onclick="filterCategory('Code')" class="cat-btn text-gray-600 hover:text-primary pb-1 whitespace-nowrap">Code</button>
+                    <button onclick="filterCategory('Business')" class="cat-btn text-gray-600 hover:text-primary pb-1 whitespace-nowrap">Business</button>
+                    <button onclick="filterCategory('Creative')" class="cat-btn text-gray-600 hover:text-primary pb-1 whitespace-nowrap">Creative</button>
+                </div>
+            </div>
+
+            <!-- Courses Catalog Section -->
+            <section id="coursesSection" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-extkapack font-extrabold text-gray-900">A broad selection of courses</h2>
+                        <p class="text-sm text-gray-600" id="courseCountText">Choose from top video courses with interactive practice</p>
+                    </div>
+                </div>
+                <div id="courseGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic Courses Rendered Here -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Course Detail View -->
+        <div id="detailView" class="hidden">
+            <div class="bg-dark text-white py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto">
+                    <button onclick="showHome()" class="text-emerald-400 text-sm font-bold mb-4 flex items-center"><i class="fa-solid fa-arrow-left mr-2"></i> Back to courses</button>
+                    <span id="detailCategory" class="text-xs uppercase tracking-wider bg-emerald-800 text-emerald-200 px-2 py-1 rounded">Category</span>
+                    <h1 id="detailTitle" class="text-3xl font-black mt-3 mb-2">Course Title</h1>
+                    <p id="detailDesc" class="text-gray-300 text-sm max-w-3xl mb-4">Description</p>
+                    <div class="flex items-center space-x-4 text-sm text-gray-300">
+                        <span id="detailRating" class="text-amber-400 font-bold">4.8 ★</span>
+                        <span id="detailInstructor">By Instructor</span>
+                        <span id="detailLessonsCount">0 lessons</span>
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                        <h3 class="text-lg font-bold mb-4">What you'll learn</h3>
+                        <div id="detailWhatYouLearn" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-700"></div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                        <h3 class="text-lg font-bold mb-4">Course Content</h3>
+                        <div id="detailLessonsList" class="divide-y divide-gray-200 border border-gray-200 rounded"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-lg sticky top-24">
+                        <div id="detailThumb" class="h-40 rounded mb-4 flex items-center justify-center text-white text-3xl font-bold bg-primary">Vidlearn</div>
+                        <div id="detailPrice" class="text-3xl font-black mb-4">₦8,500</div>
+                        <button id="enrollBtn" onclick="enrollCurrentCourse()" class="w-full py-3 bg-primary text-white font-bold rounded shadow hover:bg-emerald-800 transition mb-3">Enroll Now</button>
+                        <p class="text-xs text-gray-500 text-center">30-day money-back guarantee · Full lifetime access</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learn / Sandbox View -->
+        <div id="learnView" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="bg-black aspect-video rounded overflow-hidden relative">
+                        <video id="lessonVideo" controls class="w-full h-full object-contain"></video>
+                    </div>
+                    <h2 id="lessonTitle" class="text-2xl font-bold">Lesson Title</h2>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                        <div class="bg-dark text-white p-3 rounded-t flex items-center space-x-2 text-sm font-bold">
+                            <i class="fa-solid fa-terminal"></i>
+                            <span>Practice Sandbox</span>
+                        </div>
+                        <div id="lessonTask" class="bg-emerald-50 border-x border-gray-200 p-4 text-sm font-medium text-gray-800">Task instruction</div>
+                        <textarea id="codeEditor" rows="6" class="w-full bg-gray-900 text-emerald-300 font-mono text-sm p-4 border border-gray-700 focus:outline-none"></textarea>
+                        <div class="p-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
+                            <button onclick="runAndCheckCode()" class="px-6 py-2 bg-primary text-white font-bold rounded shadow hover:bg-emerald-800">Run & Check</button>
+                            <div id="sandboxFeedback" class="text-sm font-bold"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm sticky top-24">
+                        <h3 class="text-lg font-bold mb-4">Course Content</h3>
+                        <div id="learnLessonsList" class="space-y-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Coach View -->
+        <div id="practiceView" class="hidden max-w-4xl mx-auto px-4 py-12">
+            <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-lg mb-8">
+                <span class="text-xs font-black text-primary uppercase tracking-widest">Guided Practice Coach</span>
+                <h1 class="text-3xl font-extrabold mt-2 mb-2">Practice the conversation before it counts</h1>
+                <p class="text-gray-600 text-sm">Choose a scenario, write your response, and get instant feedback on empathy, clarity, and next steps.</p>
+            </div>
+            <div id="scenarioGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+        </div>
+
+        <!-- Login / Account View -->
+        <div id="loginView" class="hidden max-w-md mx-auto px-4 py-16">
+            <div class="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
+                <h2 id="loginTitle" class="text-2xl font-black mb-2">Log in or sign up</h2>
+                <p class="text-sm text-gray-600 mb-6">Enter your name and email to save your progress and certificates.</p>
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="loginName" placeholder="Ada Lovelace" class="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="loginEmail" placeholder="ada@example.com" required class="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-primary">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-700 mb-1">Password</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required class="w-full px-4 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-primary">
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded shadow hover:bg-emerald-800">Continue</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
+            <div class="text-xl font-black mb-4 sm:mb-0">
+                <span class="text-primary">Vid</span><span class="text-white">learn</span><span class="text-emerald-500">.</span>
+            </div>
+            <p class="text-xs text-gray-400">© 2026 Vidlearn. All rights reserved. Built with MongoDB & Express.</p>
+        </div>
+    </footer>
+
+    <script>
+        let allCourses = [];
+        let currentCourse = null;
+        let currentLessonIndex = 0;
+        let authToken = localStorage.getItem('vl_token') || null;
+        let currentUser = null;
+
+        async function init() {
+            try {
+                const res = await fetch('/api/courses');
+                const data = await res.json();
+                allCourses = data.courses;
+                renderCourses(allCourses);
+                if (authToken) {
+                    const meRes = await fetch('/api/me', { headers: { 'Authorization': `Bearer ${authToken}` } });
+                    if (meRes.ok) {
+                        currentUser = await meRes.json();
+                        updateAuthUI();
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to load courses', e);
+            }
+        }
+
+        function renderCourses(courses) {
+            const grid = document.getElementById('courseGrid');
+            grid.innerHTML = courses.map(c => `
+                <div onclick="showCourseDetail(${c.id})" class="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition cursor-pointer flex flex-col">
+                    <div class="h-40 bg-emerald-700 flex items-center justify-center text-white text-2xl font-bold relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black opacity-20"></div>
+                        <span class="relative z-10">${c.t}</span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">${c.cat}</span>
+                            <h3 class="font-bold text-base mt-2 text-gray-900 line-clamp-2">${c.t}</h3>
+                            <p class="text-xs text-gray-500 mt-1">${c.by}</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <span class="text-lg font-black text-gray-900">${c.p}</span>
+                            <span class="text-xs text-amber-500 font-bold">${c.r} ★ (${c.n || '10k'})</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.className = 'cat-btn text-gray-600 hover:text-primary pb-1 whitespace-nowrap';
+                if (btn.textContent.includes(cat) || (cat === 'All' && btn.textContent.includes('All'))) {
+                    btn.className = 'cat-btn text-primary border-b-2 border-primary pb-1 whitespace-nowrap';
+                }
+            });
+            const filtered = cat === 'All' ? allCourses : allCourses.filter(c => c.cat === cat);
+            renderCourses(filtered);
+        }
+
+        function handleSearch(q) {
+            const query = q.toLowerCase();
+            const filtered = allCourses.filter(c => c.t.toLowerCase().includes(query) || c.by.toLowerCase().includes(query));
+            renderCourses(filtered);
+        }
+
+        function showHome() {
+            hideAll();
+            document.getElementById('homeView').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            hideAll();
+            document.getElementById('loginView').classList.remove('hidden');
+        }
+
+        function showPractice() {
+            hideAll();
+            document.getElementById('practiceView').classList.remove('hidden');
+            loadScenarios();
+        }
+
+        function showMyLearning() {
+            if (!authToken) { showLogin(); return; }
+            showHome();
+            const enrolled = allCourses.filter(c => currentUser && currentUser.mine && currentUser.mine[c.id]);
+            renderCourses(enrolled);
+            document.getElementById('courseCountText').textContent = 'Your enrolled courses & learning progress';
+        }
+
+        function showTeach() {
+            if (!authToken) { showLogin(); return; }
+            alert('Course creator builder is accessible in the full mobile & web app.');
+        }
+
+        function hideAll() {
+            ['homeView', 'detailView', 'learnView', 'practiceView', 'loginView'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+        }
+
+        async function showCourseDetail(id) {
+            currentCourse = allCourses.find(c => c.id === id);
+            if (!currentCourse) return;
+            hideAll();
+            document.getElementById('detailView').classList.remove('hidden');
+            document.getElementById('detailCategory').textContent = currentCourse.cat;
+            document.getElementById('detailTitle').textContent = currentCourse.t;
+            document.getElementById('detailDesc').textContent = currentCourse.d;
+            document.getElementById('detailRating').textContent = `${currentCourse.r} ★`;
+            document.getElementById('detailInstructor').textContent = `By ${currentCourse.by}`;
+            document.getElementById('detailLessonsCount').textContent = `${currentCourse.L.length} lessons`;
+            document.getElementById('detailPrice').textContent = currentCourse.p;
+
+            document.getElementById('detailWhatYouLearn').innerHTML = currentCourse.L.map(l => `
+                <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-primary"></i><span>${l.t}</span></div>
+            `).join('');
+
+            document.getElementById('detailLessonsList').innerHTML = currentCourse.L.map((l, i) => `
+                <div class="p-3 flex items-center justify-between text-sm">
+                    <span class="font-medium">${i + 1}. ${l.t}</span>
+                    <span class="text-xs text-gray-500">Video & Sandbox</span>
+                </div>
+            `).join('');
+
+            const isEnrolled = currentUser && currentUser.mine && currentUser.mine[currentCourse.id];
+            document.getElementById('enrollBtn').textContent = isEnrolled ? 'Go to Course' : 'Enroll Now';
+        }
+
+        async function enrollCurrentCourse() {
+            if (!authToken) { showLogin(); return; }
+            const isEnrolled = currentUser && currentUser.mine && currentUser.mine[currentCourse.id];
+            if (isEnrolled) {
+                startLearning(0);
+                return;
+            }
+            try {
+                const res = await fetch('/api/me/enroll', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+                    body: JSON.stringify({ courseId: currentCourse.id })
+                });
+                if (res.ok) {
+                    currentUser = await res.json();
+                    startLearning(0);
+                }
+            } catch (e) {
+                alert('Enrollment failed');
+            }
+        }
+
+        function startLearning(index) {
+            currentLessonIndex = index;
+            hideAll();
+            document.getElementById('learnView').classList.remove('hidden');
+            const lesson = currentCourse.L[currentLessonIndex];
+            document.getElementById('lessonTitle').textContent = `${currentLessonIndex + 1}. ${lesson.t}`;
+            document.getElementById('lessonTask').textContent = `Task: ${lesson.task}`;
+            document.getElementById('codeEditor').value = lesson.start || '';
+            document.getElementById('lessonVideo').src = lesson.uri;
+            document.getElementById('sandboxFeedback').textContent = '';
+
+            document.getElementById('learnLessonsList').innerHTML = currentCourse.L.map((l, i) => `
+                <div onclick="startLearning(${i})" class="p-3 rounded border ${i === currentLessonIndex ? 'border-primary bg-emerald-50' : 'border-gray-200'} cursor-pointer flex items-center justify-between text-sm">
+                    <span>${i + 1}. ${l.t}</span>
+                    <i class="fa-solid fa-play text-primary text-xs"></i>
+                </div>
+            `).join('');
+        }
+
+        function runAndCheckCode() {
+            const lesson = currentCourse.L[currentLessonIndex];
+            const code = document.getElementById('codeEditor').value;
+            const ok = lesson.chk.every(r => new RegExp(r, 'i').test(code));
+            const feedback = document.getElementById('sandboxFeedback');
+            if (ok) {
+                feedback.className = 'text-sm font-bold text-emerald-600';
+                feedback.textContent = '✓ Practice Passed! Unlocked next lesson.';
+            } else {
+                feedback.className = 'text-sm font-bold text-red-600';
+                feedback.textContent = `Not quite. Hint: ${lesson.hint}`;
+            }
+        }
+
+        async function loadScenarios() {
+            try {
+                const res = await fetch('/api/practice/scenarios');
+                const data = await res.json();
+                document.getElementById('scenarioGrid').innerHTML = data.scenarios.map(s => `
+                    <div class="bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+                        <h3 class="font-extrabold text-lg mb-1">${s.title}</h3>
+                        <p class="text-xs text-gray-500 mb-4">${s.topic} · ${s.level}</p>
+                        <p class="text-sm text-gray-700 mb-6">Practice with ${s.persona}.</p>
+                        <button onclick="alert('Start practice in mobile app')" class="text-primary font-bold text-sm">Start Practice →</button>
+                    </div>
+                `).join('');
+            } catch (e) {}
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const name = document.getElementById('loginName').value;
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    authToken = data.token;
+                    localStorage.setItem('vl_token', authToken);
+                    currentUser = data;
+                    updateAuthUI();
+                    showHome();
+                } else {
+                    alert(data.error);
+                }
+            } catch (e) {
+                alert('Login request failed');
+            }
+        }
+
+        function updateAuthUI() {
+            if (currentUser && currentUser.user) {
+                document.getElementById('authNav').innerHTML = `
+                    <span class="text-sm font-bold text-gray-700">Hi, ${currentUser.user}</span>
+                    <button onclick="logout()" class="px-4 py-2 bg-gray-900 text-white rounded text-sm font-bold hover:bg-black">Log out</button>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('vl_token');
+            authToken = null;
+            currentUser = null;
+            location.reload();
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
