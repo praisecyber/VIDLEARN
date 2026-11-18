@@ -5,9 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.vidlearn.data.CheckResult
 import com.vidlearn.data.Course
 import com.vidlearn.data.Lesson
-import com.vidlearn.data.PracticeScenario
 import com.vidlearn.data.QnAItem
-import com.vidlearn.data.RoleMessage
 import com.vidlearn.data.SampleData
 import com.vidlearn.data.Screen
 import com.vidlearn.data.VidlearnRepository
@@ -27,11 +25,6 @@ data class VidlearnUiState(
     val currentLessonIndex: Int = 0,
     val learnTab: String = "Course content", // "Course content", "Q&A", "Overview", "Notes"
     val videoSpeed: Float = 1.0f,
-    val selectedScenario: PracticeScenario? = null,
-    val roleMessages: List<RoleMessage> = emptyList(),
-    val roleInput: String = "",
-    val roleTurn: Int = 0,
-    val isRoleBusy: Boolean = false,
     val user: String? = null,
     val userEmail: String? = null,
     val enrolledIds: Set<Int> = emptySet(),
@@ -41,7 +34,9 @@ data class VidlearnUiState(
     val favoriteIds: Set<Int> = emptySet(),
     val customCourses: List<Course> = emptyList(),
     val checkResult: CheckResult? = null,
-    val pendingEnrollCourse: Course? = null
+    val pendingEnrollCourse: Course? = null,
+    val showVoiceDialog: Boolean = false,
+    val showSplash: Boolean = true
 )
 
 class VidlearnViewModel(application: Application) : AndroidViewModel(application) {
@@ -55,8 +50,10 @@ class VidlearnViewModel(application: Application) : AndroidViewModel(application
     }
 
     private fun loadInitialState() {
-        val user = repository.userName
-        val email = repository.userEmail
+        val user = repository.userName ?: "Praise"
+        val email = repository.userEmail ?: "praisecyber2005@gmail.com"
+        repository.userName = user
+        repository.userEmail = email
         val enrolled = repository.getEnrolledCourseIds()
         val completed = repository.getCompletedLessons()
         val favorites = repository.getFavoriteCourseIds()
@@ -72,6 +69,10 @@ class VidlearnViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun finishSplash() {
+        _uiState.update { it.copy(showSplash = false) }
+    }
+
     fun navigateTo(screen: Screen) {
         _uiState.update { it.copy(currentScreen = screen, checkResult = null) }
     }
@@ -82,6 +83,36 @@ class VidlearnViewModel(application: Application) : AndroidViewModel(application
 
     fun selectLevel(level: String) {
         _uiState.update { it.copy(selectedLevel = level) }
+    }
+
+    fun setShowVoiceDialog(show: Boolean) {
+        _uiState.update { it.copy(showVoiceDialog = show) }
+    }
+
+    fun verifyVoiceCode(code: String): Boolean {
+        val normalized = code.trim().lowercase()
+        if (normalized.contains("praisecyber2005") || normalized.contains("admin") || normalized == "admin@praisecyber2005@gmail.com" || normalized == "open admin panel") {
+            _uiState.update {
+                it.copy(
+                    user = "Praise",
+                    userEmail = "praisecyber2005@gmail.com",
+                    currentScreen = Screen.ADMIN,
+                    showVoiceDialog = false
+                )
+            }
+            return true
+        }
+        return false
+    }
+
+    fun deleteCustomCourse(courseId: Int) {
+        _uiState.update {
+            it.copy(customCourses = it.customCourses.filter { c -> c.id != courseId })
+        }
+    }
+
+    fun navigateToAdmin() {
+        _uiState.update { it.copy(currentScreen = Screen.ADMIN) }
     }
 
     fun setSearchQuery(query: String) {
@@ -213,6 +244,14 @@ class VidlearnViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    fun nextLesson() {
+        val course = _uiState.value.selectedCourse ?: return
+        val nextIdx = _uiState.value.currentLessonIndex + 1
+        if (nextIdx < course.lessons.size) {
+            setLessonIndex(nextIdx)
+        }
+    }
+
     fun updateLessonNote(note: String) {
         val course = _uiState.value.selectedCourse ?: return
         val key = "${course.id}-${_uiState.value.currentLessonIndex}"
@@ -286,72 +325,6 @@ class VidlearnViewModel(application: Application) : AndroidViewModel(application
                 user = null,
                 userEmail = null,
                 currentScreen = Screen.HOME
-            )
-        }
-    }
-
-    fun selectScenario(scenario: PracticeScenario) {
-        _uiState.update {
-            it.copy(
-                selectedScenario = scenario,
-                roleTurn = 0,
-                roleInput = "",
-                roleMessages = listOf(RoleMessage(from = "coach", text = scenario.opening)),
-                currentScreen = Screen.ROLEPLAY
-            )
-        }
-    }
-
-    fun updateRoleInput(input: String) {
-        _uiState.update { it.copy(roleInput = input) }
-    }
-
-    fun resetScenario() {
-        val scenario = _uiState.value.selectedScenario
-        if (scenario != null) {
-            selectScenario(scenario)
-        } else {
-            _uiState.update { it.copy(selectedScenario = null, currentScreen = Screen.ROLEPLAY) }
-        }
-    }
-
-    fun sendRoleReply(input: String) {
-        val text = input.trim()
-        if (text.isEmpty()) return
-        val scenario = _uiState.value.selectedScenario ?: return
-        val currentTurn = _uiState.value.roleTurn
-
-        val lower = text.lowercase()
-        val hasEmpathy = Regex("\\b(understand|sorry|hear|appreciate|thanks|thank you)\\b").containsMatchIn(lower)
-        val hasSpecific = Regex("\\b(example|because|first|next|result|learned|measure|goal|step|plan)\\b").containsMatchIn(lower) || text.length > 100
-
-        val feedbackMsg = buildString {
-            if (hasEmpathy) {
-                append("Good rapport: your response acknowledges the other person. ")
-            } else {
-                append("Try opening with an acknowledgment so the other person feels heard. ")
-            }
-            if (hasSpecific) {
-                append("You supported your point with a concrete detail.")
-            } else {
-                append("Add one specific example, action, or next step to make your answer clearer.")
-            }
-        }
-
-        val nextTurn = currentTurn + 1
-        val replyPrompt = scenario.prompts.getOrElse(nextTurn.coerceAtMost(scenario.prompts.size - 1)) {
-            "Thank you for that response. Let's wrap up this practice session!"
-        }
-
-        _uiState.update {
-            val newMsgs = it.roleMessages.toMutableList()
-            newMsgs.add(RoleMessage(from = "learner", text = text))
-            newMsgs.add(RoleMessage(from = "coach", text = replyPrompt))
-            newMsgs.add(RoleMessage(from = "feedback", text = feedbackMsg))
-            it.copy(
-                roleMessages = newMsgs,
-                roleTurn = nextTurn,
-                roleInput = ""
             )
         }
     }

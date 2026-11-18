@@ -29,6 +29,7 @@ object SampleData {
             isHighestRated = true,
             level = "All Levels",
             duration = "6.5 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop",
             description = "Learn colour, type, layout and motion to design modern websites people love. Master professional tools, responsive design grids, accessibility standards, and hands-on CSS styling.",
             requirements = listOf(
                 "No prior design or programming knowledge needed.",
@@ -78,15 +79,6 @@ object SampleData {
                     hint = "Use display:grid; grid-template-columns:1fr 1fr 1fr;",
                     videoUri = videoUri(2),
                     duration = "18 mins"
-                ),
-                Lesson(
-                    title = "Motion basics",
-                    task = "Add a CSS transition to the button.",
-                    startCode = "<button style=\"\">Hover me</button>",
-                    checkRegexes = listOf("transition"),
-                    hint = "Add transition: all .3s;",
-                    videoUri = videoUri(3),
-                    duration = "14 mins"
                 )
             )
         ),
@@ -98,76 +90,30 @@ object SampleData {
             title = "Python for Beginners: Zero to Hero",
             instructor = "Dev Patel",
             rating = 4.7,
-            ratingsCount = "52,110",
-            price = "₦9,900",
+            ratingsCount = "24,890",
+            price = "₦7,000",
             isBestseller = true,
-            isHotAndNew = true,
+            isHotAndNew = false,
             level = "Beginner",
             duration = "8.0 total hours",
-            description = "Write real Python programs with simple, step by step video lessons. Master logic, functions, loops, and data structures while practicing code directly in the sandbox.",
-            requirements = listOf(
-                "No previous programming experience required.",
-                "A computer running Windows, macOS, or Linux."
-            ),
-            targetAudience = listOf(
-                "Complete programming beginners.",
-                "Students wanting to learn automation & scripting.",
-                "Aspiring software engineers and data analysts."
-            ),
-            instructorTitle = "Senior Software Engineer & Python Evangelist",
-            instructorBio = "Dev is a software engineer with 12+ years of experience building scalable backend services and automated pipelines.",
+            imageUrl = "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop",
+            description = "Master Python syntax, loops, data structures, and build real projects from scratch. Learn clean coding standards, error handling, file automation, and API consumption.",
+            requirements = listOf("A computer (Windows, Mac, or Linux)."),
+            targetAudience = listOf("Complete beginners with zero programming experience."),
+            instructorTitle = "Senior Software Engineer & Python Specialist",
+            instructorBio = "Dev has spent over a decade building scalable backend systems.",
             instructorStudentsCount = "120,000+ Students",
             reviews = listOf(
-                CourseReview("Chidi Anagonye", 5.0, "Yesterday", "The bite-sized lessons paired with interactive code checks are genius!"),
-                CourseReview("Aisha Danjuma", 4.7, "3 days ago", "Paced extremely well for total beginners.")
-            ),
-            qnaItems = listOf(
-                QnAItem("q1", "Samuel B.", "1 day ago", "Is Python 3 backwards compatible with Python 2?", listOf("Dev Patel: Python 3 introduced breaking cleanups, so write Python 3 for modern projects!"))
+                CourseReview("Chidi K.", 5.0, "3 days ago", "Dev explains complex logic so clearly! Best Python course available.")
             ),
             lessons = listOf(
                 Lesson(
                     title = "Variables & types",
-                    task = "Create a variable called name and print it.",
-                    startCode = "# your code here\n",
-                    checkRegexes = listOf("name\\s*=", "print\\("),
-                    hint = "name = 'Ada' then print(name)",
-                    videoUri = videoUri(1),
-                    duration = "10 mins"
-                ),
-                Lesson(
-                    title = "Loops and logic",
-                    task = "Write a for loop that prints numbers with range.",
-                    startCode = "# your code here\n",
-                    checkRegexes = listOf("for\\s+\\w+\\s+in\\s+range", "print"),
-                    hint = "for i in range(1, 6): print(i)",
-                    videoUri = videoUri(2),
-                    duration = "16 mins"
-                ),
-                Lesson(
-                    title = "Functions",
-                    task = "Define a function greet(name) that returns text.",
-                    startCode = "# your code here\n",
-                    checkRegexes = listOf("def\\s+greet\\s*\\(", "return"),
-                    hint = "def greet(name): return 'Hi ' + name",
+                    task = "Create a variable named age set to 25",
+                    startCode = "# Write python code below\n",
+                    checkRegexes = listOf("age\\s*=\\s*25"),
+                    hint = "Write: age = 25",
                     videoUri = videoUri(3),
-                    duration = "15 mins"
-                ),
-                Lesson(
-                    title = "Build a mini app",
-                    task = "Ask the user for input and print a greeting.",
-                    startCode = "# your code here\n",
-                    checkRegexes = listOf("input\\s*\\(", "print\\s*\\("),
-                    hint = "name = input('Name? ')",
-                    videoUri = videoUri(4),
-                    duration = "20 mins"
-                ),
-                Lesson(
-                    title = "Next steps",
-                    task = "Write a comment (starting with #) about what you will build next.",
-                    startCode = "",
-                    checkRegexes = listOf("#\\s*\\w+"),
-                    hint = "Start the line with # and a few words",
-                    videoUri = videoUri(0),
                     duration = "10 mins"
                 )
             )
@@ -180,23 +126,18 @@ object SampleData {
             title = "Money & Investing 101",
             instructor = "Chidi Eze",
             rating = 4.6,
-            ratingsCount = "9,870",
-            price = "₦7,200",
+            ratingsCount = "12,100",
+            price = "₦9,000",
             isBestseller = false,
-            isHighestRated = false,
-            level = "All Levels",
+            isHotAndNew = false,
+            level = "Intermediate",
             duration = "4.0 total hours",
-            description = "Budget, save and invest with confidence, even if you are starting from scratch. Learn practical money management, index funds, compound growth, and scam protection.",
-            requirements = listOf(
-                "Open mind to financial education.",
-                "Basic math skills."
-            ),
-            targetAudience = listOf(
-                "Anyone wanting to achieve financial freedom.",
-                "Young professionals starting their earning journey."
-            ),
-            instructorTitle = "Certified Financial Planner & Investment Advisor",
-            instructorBio = "Chidi has guided thousands of families and young professionals toward financial independence over the past decade.",
+            imageUrl = "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&auto=format&fit=crop",
+            description = "Understand personal finance, compound interest, index funds and risk management.",
+            requirements = listOf("Basic math skills."),
+            targetAudience = listOf("Anyone looking to take control of their personal savings."),
+            instructorTitle = "Certified Financial Analyst & Wealth Strategist",
+            instructorBio = "Chidi is a CFA charterholder advising young professionals.",
             instructorStudentsCount = "30,000+ Students",
             reviews = listOf(
                 CourseReview("Grace Udoh", 5.0, "4 days ago", "Simple, actionable, and straight to the point!")
@@ -210,33 +151,6 @@ object SampleData {
                     hint = "Write three lines starting with -",
                     videoUri = videoUri(0),
                     duration = "12 mins"
-                ),
-                Lesson(
-                    title = "Saving habits",
-                    task = "Write your goal like: Save 50000 by December",
-                    startCode = "",
-                    checkRegexes = listOf("save\\s+\\S+.*\\bby\\b"),
-                    hint = "Use the words Save ... by ...",
-                    videoUri = videoUri(1),
-                    duration = "14 mins"
-                ),
-                Lesson(
-                    title = "Intro to investing",
-                    task = "Write the percent of income you would invest, e.g. 20%",
-                    startCode = "",
-                    checkRegexes = listOf("\\d+\\s*%"),
-                    hint = "Include a number with a % sign",
-                    videoUri = videoUri(2),
-                    duration = "18 mins"
-                ),
-                Lesson(
-                    title = "Avoiding scams",
-                    task = "List 2 scam red flags, each starting with -",
-                    startCode = "- ",
-                    checkRegexes = listOf("-.*\\n\\s*-"),
-                    hint = "Two lines starting with -",
-                    videoUri = videoUri(3),
-                    duration = "15 mins"
                 )
             )
         ),
@@ -254,19 +168,15 @@ object SampleData {
             isHotAndNew = true,
             level = "Beginner",
             duration = "5.2 total hours",
-            description = "Cut, grade and export scroll-stopping videos in record time. Master jump cuts, sound design, vertical video formats, and color correction.",
-            requirements = listOf(
-                "A smartphone or computer with video editing software."
-            ),
-            targetAudience = listOf(
-                "Content creators, YouTubers, and TikTokers.",
-                "Digital marketers looking to create engaging video ads."
-            ),
+            imageUrl = "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop",
+            description = "Cut, grade and export scroll-stopping videos in record time.",
+            requirements = listOf("A smartphone or computer with video editing software."),
+            targetAudience = listOf("Content creators, YouTubers, and TikTokers."),
             instructorTitle = "Video Producer & Creator Economy Coach",
-            instructorBio = "Lena produces viral social media content for top creators and global brands with millions of views.",
+            instructorBio = "Lena produces viral social media content for top creators.",
             instructorStudentsCount = "22,000+ Students",
             reviews = listOf(
-                CourseReview("Bamidele T.", 4.8, "1 week ago", "Learned so many practical video editing hacks in under 2 hours.")
+                CourseReview("Bamidele T.", 4.8, "1 week ago", "Learned so many practical video editing hacks.")
             ),
             lessons = listOf(
                 Lesson(
@@ -277,33 +187,6 @@ object SampleData {
                     hint = "Three lines starting with -",
                     videoUri = videoUri(4),
                     duration = "15 mins"
-                ),
-                Lesson(
-                    title = "Sound design",
-                    task = "Name a sound effect or music style you would add.",
-                    startCode = "",
-                    checkRegexes = listOf("whoosh|sfx|music|beat|ambient|impact"),
-                    hint = "Try: whoosh, beat, ambient",
-                    videoUri = videoUri(0),
-                    duration = "12 mins"
-                ),
-                Lesson(
-                    title = "Colour grading",
-                    task = "Pick a grade: warm, cool or cinematic.",
-                    startCode = "",
-                    checkRegexes = listOf("warm|cool|cinematic"),
-                    hint = "Type one of the three",
-                    videoUri = videoUri(1),
-                    duration = "14 mins"
-                ),
-                Lesson(
-                    title = "Export for socials",
-                    task = "Write the Reels export size: 1080x1920",
-                    startCode = "",
-                    checkRegexes = listOf("1080\\s*x\\s*1920"),
-                    hint = "Width x height in pixels",
-                    videoUri = videoUri(2),
-                    duration = "10 mins"
                 )
             )
         ),
@@ -321,16 +204,12 @@ object SampleData {
             isHighestRated = true,
             level = "Intermediate",
             duration = "7.0 total hours",
-            description = "Use AI to write, research and automate the boring parts of your job. Master prompt engineering, AI agents, automated workflows, and executive summaries.",
-            requirements = listOf(
-                "Basic digital literacy."
-            ),
-            targetAudience = listOf(
-                "Knowledge workers, managers, and business owners.",
-                "Anyone looking to boost productivity 10x using AI."
-            ),
+            imageUrl = "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&auto=format&fit=crop",
+            description = "Use AI to write, research and automate the boring parts of your job.",
+            requirements = listOf("Basic digital literacy."),
+            targetAudience = listOf("Knowledge workers, managers, and business owners."),
             instructorTitle = "AI Researcher & Automation Consultant",
-            instructorBio = "Sam consults enterprise leadership teams on leveraging generative AI models and intelligent workflows.",
+            instructorBio = "Sam consults enterprise leadership teams on leveraging generative AI.",
             instructorStudentsCount = "70,000+ Students",
             reviews = listOf(
                 CourseReview("Zainab A.", 5.0, "3 days ago", "The best AI productivity course on the market!")
@@ -344,24 +223,6 @@ object SampleData {
                     hint = "Begin with Act as a ...",
                     videoUri = videoUri(3),
                     duration = "16 mins"
-                ),
-                Lesson(
-                    title = "Automate boring tasks",
-                    task = "Write one task you would automate: Automate ...",
-                    startCode = "",
-                    checkRegexes = listOf("automate\\s+\\w+"),
-                    hint = "Start with the word Automate",
-                    videoUri = videoUri(4),
-                    duration = "20 mins"
-                ),
-                Lesson(
-                    title = "AI for research",
-                    task = "Write one research question ending with ?",
-                    startCode = "",
-                    checkRegexes = listOf("\\w+.*\\?"),
-                    hint = "End with a question mark",
-                    videoUri = videoUri(0),
-                    duration = "18 mins"
                 )
             )
         ),
@@ -376,19 +237,15 @@ object SampleData {
             ratingsCount = "4,120",
             price = "₦5,900",
             isBestseller = false,
-            isHighestRated = false,
+            isHotAndNew = false,
             level = "All Levels",
             duration = "3.8 total hours",
-            description = "Beat nerves, tell better stories and own any room. Master body language, vocal pacing, structure, and Q&A management.",
-            requirements = listOf(
-                "Willingness to practice speaking out loud."
-            ),
-            targetAudience = listOf(
-                "Professionals presenting at work or conferences.",
-                "Students preparing for speeches and project pitches."
-            ),
+            imageUrl = "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&auto=format&fit=crop",
+            description = "Beat nerves, tell better stories and own any room.",
+            requirements = listOf("Willingness to practice speaking out loud."),
+            targetAudience = listOf("Professionals presenting at work or conferences."),
             instructorTitle = "Keynote Speaker & Communications Coach",
-            instructorBio = "Grace is an international keynote speaker who has trained Fortune 500 executives and TEDx speakers.",
+            instructorBio = "Grace is an international keynote speaker who has trained Fortune 500 executives.",
             instructorStudentsCount = "15,000+ Students",
             reviews = listOf(
                 CourseReview("David O.", 4.6, "2 weeks ago", "Great confidence booster!")
@@ -402,83 +259,512 @@ object SampleData {
                     hint = "Three lines starting with -",
                     videoUri = videoUri(1),
                     duration = "12 mins"
-                ),
+                )
+            )
+        ),
+        Course(
+            id = 7,
+            icon = "code",
+            color = "#0b6b3a",
+            category = "Code",
+            title = "Android Development with Kotlin & Compose",
+            instructor = "Praise Cyber",
+            rating = 4.9,
+            ratingsCount = "14,200",
+            price = "₦12,000",
+            isBestseller = true,
+            isHighestRated = true,
+            level = "Intermediate",
+            duration = "10.5 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800&auto=format&fit=crop",
+            description = "Build modern Android applications using Kotlin, Jetpack Compose, StateFlow, and ViewModel.",
+            requirements = listOf("Basic programming experience in Kotlin or Java."),
+            targetAudience = listOf("Android developers upgrading to Jetpack Compose."),
+            instructorTitle = "Lead Mobile Architect",
+            instructorBio = "Praise builds enterprise Android applications with modern Jetpack architecture.",
+            instructorStudentsCount = "50,000+ Students",
+            reviews = listOf(
+                CourseReview("Tunde A.", 5.0, "Yesterday", "Outstanding Jetpack Compose explanation!")
+            ),
+            lessons = listOf(
                 Lesson(
-                    title = "Story structure",
-                    task = "Write a story opening that uses the word Once",
+                    title = "Composable State",
+                    task = "Declare a mutableStateOf boolean set to true",
                     startCode = "",
-                    checkRegexes = listOf("once"),
-                    hint = "Once upon...",
+                    checkRegexes = listOf("mutableStateOf\\s*\\(\\s*true\\s*\\)"),
+                    hint = "val state = remember { mutableStateOf(true) }",
                     videoUri = videoUri(2),
                     duration = "15 mins"
-                ),
+                )
+            )
+        ),
+        Course(
+            id = 8,
+            icon = "dollar-sign",
+            color = "#111114",
+            category = "Business",
+            title = "Digital Marketing & Social Media Ads 2026",
+            instructor = "Fatima Alhassan",
+            rating = 4.7,
+            ratingsCount = "22,400",
+            price = "₦8,000",
+            isBestseller = true,
+            isHotAndNew = true,
+            level = "All Levels",
+            duration = "8.2 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop",
+            description = "Master Meta Ads, Google Analytics 4, TikTok Marketing, and SEO conversion funnels.",
+            requirements = listOf("Basic Internet usage and business goals."),
+            targetAudience = listOf("Entrepreneurs, freelancers, and growth marketers."),
+            instructorTitle = "Growth Marketing Strategist",
+            instructorBio = "Fatima has managed over $5M in ad spend across ecommerce and SaaS.",
+            instructorStudentsCount = "65,000+ Students",
+            reviews = listOf(
+                CourseReview("Victor M.", 4.8, "5 days ago", "Transformed our campaign ROI within two weeks!")
+            ),
+            lessons = listOf(
                 Lesson(
-                    title = "Body language",
-                    task = "Write one tip using eye contact or posture.",
+                    title = "Ad Copies",
+                    task = "Write a CTA starting with: Buy Now",
                     startCode = "",
-                    checkRegexes = listOf("eye contact|posture"),
-                    hint = "Mention eye contact or posture",
+                    checkRegexes = listOf("buy now"),
+                    hint = "Type: Buy Now to get 20% off",
                     videoUri = videoUri(3),
                     duration = "14 mins"
-                ),
+                )
+            )
+        ),
+        Course(
+            id = 9,
+            icon = "layout",
+            color = "#1f8f55",
+            category = "Design",
+            title = "UI/UX Figma Design Systems & Prototyping",
+            instructor = "Michael Zhang",
+            rating = 4.8,
+            ratingsCount = "19,800",
+            price = "₦9,500",
+            isBestseller = true,
+            isHighestRated = false,
+            level = "Advanced",
+            duration = "9.0 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&auto=format&fit=crop",
+            description = "Design scalable design systems, auto layout 5.0 components, variables, and high-fidelity prototypes.",
+            requirements = listOf("Figma basics recommended."),
+            targetAudience = listOf("UI/UX designers scaling enterprise design systems."),
+            instructorTitle = "Principal Product Designer",
+            instructorBio = "Michael leads design system engineering for global mobile products.",
+            instructorStudentsCount = "40,000+ Students",
+            reviews = listOf(
+                CourseReview("Simi O.", 5.0, "1 week ago", "Figma auto-layout variable section is pure gold!")
+            ),
+            lessons = listOf(
                 Lesson(
-                    title = "Q&A mastery",
-                    task = "Write a Q: and an A: for a question you expect.",
-                    startCode = "Q: \nA: ",
-                    checkRegexes = listOf("q\\s*:\\s*\\S", "a\\s*:\\s*\\S"),
-                    hint = "Fill in after Q: and A:",
+                    title = "Design Tokens",
+                    task = "Type color code: #0B6B3A",
+                    startCode = "",
+                    checkRegexes = listOf("#0b6b3a"),
+                    hint = "Type #0B6B3A",
                     videoUri = videoUri(4),
+                    duration = "18 mins"
+                )
+            )
+        ),
+        Course(
+            id = 10,
+            icon = "dollar-sign",
+            color = "#0b6b3a",
+            category = "Business",
+            title = "Financial Modeling & Valuation Masterclass",
+            instructor = "Tariq Mansoor",
+            rating = 4.6,
+            ratingsCount = "9,300",
+            price = "₦11,000",
+            isBestseller = false,
+            isHotAndNew = false,
+            level = "Advanced",
+            duration = "7.5 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&auto=format&fit=crop",
+            description = "Build 3-statement financial models, discounted cash flow (DCF) valuations, and M&A sensitivity analyses.",
+            requirements = listOf("Intermediate Microsoft Excel skills."),
+            targetAudience = listOf("Investment banking analysts and corporate finance professionals."),
+            instructorTitle = "Ex-Goldman Sachs Vice President",
+            instructorBio = "Tariq advised on over $10B in M&A deals.",
+            instructorStudentsCount = "18,000+ Students",
+            reviews = listOf(
+                CourseReview("Kenji Y.", 4.7, "3 days ago", "Extremely practical DCF model walkthrough.")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "DCF Valuation",
+                    task = "Type NPV formula starting with =NPV",
+                    startCode = "",
+                    checkRegexes = listOf("=npv"),
+                    hint = "=NPV(rate, values)",
+                    videoUri = videoUri(0),
+                    duration = "22 mins"
+                )
+            )
+        ),
+        Course(
+            id = 11,
+            icon = "code",
+            color = "#111114",
+            category = "Code",
+            title = "Full-Stack Web Development: React & Node",
+            instructor = "Elena Rostova",
+            rating = 4.9,
+            ratingsCount = "35,100",
+            price = "₦10,000",
+            isBestseller = true,
+            isHighestRated = true,
+            level = "All Levels",
+            duration = "12.0 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop",
+            description = "Build full-stack modern web apps with React 19, TypeScript, Node.js, Express, and MongoDB.",
+            requirements = listOf("HTML, CSS, JavaScript fundamentals."),
+            targetAudience = listOf("Aspiring full-stack software engineers."),
+            instructorTitle = "Full-Stack Architect",
+            instructorBio = "Elena has built high-concurrency web systems for tech unicorns.",
+            instructorStudentsCount = "140,000+ Students",
+            reviews = listOf(
+                CourseReview("Oscar R.", 5.0, "2 days ago", "The React 19 server components section is super helpful!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "React Hooks",
+                    task = "Write a useState hook initializing count to 0",
+                    startCode = "",
+                    checkRegexes = listOf("usestate\\s*\\(\\s*0\\s*\\)"),
+                    hint = "const [count, setCount] = useState(0)",
+                    videoUri = videoUri(1),
+                    duration = "20 mins"
+                )
+            )
+        ),
+        Course(
+            id = 12,
+            icon = "film",
+            color = "#1f8f55",
+            category = "Creative",
+            title = "Photography & Studio Lighting Masterclass",
+            instructor = "Julian Vance",
+            rating = 4.7,
+            ratingsCount = "8,900",
+            price = "₦7,500",
+            isBestseller = false,
+            isHotAndNew = true,
+            level = "Beginner",
+            duration = "6.0 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&auto=format&fit=crop",
+            description = "Master manual camera settings, ISO, aperture, shutter speed, three-point studio lighting, and Lightroom editing.",
+            requirements = listOf("Any DSLR or mirrorless camera."),
+            targetAudience = listOf("Beginner photographers and portrait artists."),
+            instructorTitle = "Fashion & Commercial Photographer",
+            instructorBio = "Julian's portrait photography has been featured in Vogue and GQ magazines.",
+            instructorStudentsCount = "25,000+ Students",
+            reviews = listOf(
+                CourseReview("Sonia P.", 4.8, "4 days ago", "My portrait lighting improved instantly!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "Exposure Triangle",
+                    task = "Type the 3 elements: aperture, shutter, iso",
+                    startCode = "",
+                    checkRegexes = listOf("aperture.*shutter.*iso"),
+                    hint = "Type: aperture shutter iso",
+                    videoUri = videoUri(2),
+                    duration = "15 mins"
+                )
+            )
+        ),
+        Course(
+            id = 13,
+            icon = "layout",
+            color = "#0b6b3a",
+            category = "Design",
+            title = "Graphic Design Essentials: Photoshop & Illustrator",
+            instructor = "Nia Danjuma",
+            rating = 4.6,
+            ratingsCount = "15,600",
+            price = "₦6,900",
+            isBestseller = false,
+            isHotAndNew = false,
+            level = "Beginner",
+            duration = "7.2 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&auto=format&fit=crop",
+            description = "Create brand logos, social media banners, vector art, and print layouts using Adobe Photoshop and Illustrator.",
+            requirements = listOf("Adobe Creative Cloud trial or subscription."),
+            targetAudience = listOf("Graphic designers and brand managers."),
+            instructorTitle = "Creative Director",
+            instructorBio = "Nia runs an independent branding agency servicing global clients.",
+            instructorStudentsCount = "38,000+ Students",
+            reviews = listOf(
+                CourseReview("Kelechi I.", 4.7, "1 week ago", "Excellent logo design techniques!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "Vector Pen Tool",
+                    task = "Write bezier curve key shortcut: Alt",
+                    startCode = "",
+                    checkRegexes = listOf("alt"),
+                    hint = "Type: Alt",
+                    videoUri = videoUri(3),
                     duration = "16 mins"
                 )
             )
-        )
-    )
-
-    val scenarios = listOf(
-        PracticeScenario(
-            id = "client-scope",
-            title = "Handle a Scope Change",
-            persona = "Client (Tunde)",
-            topic = "Freelance & Consulting",
-            level = "Intermediate",
-            color = "#0b6b3a",
-            icon = "briefcase",
-            opening = "Hi! Thanks for the update. By the way, can we also add a live chat feature and user dashboards before launching next week?",
-            prompts = listOf(
-                "Thanks for sharing that idea! To make sure we hit next week's launch date, should we scope the live chat for Phase 2?",
-                "Got it. What is the priority between launching on time versus adding the dashboard first?"
-            ),
-            turnCount = 2
         ),
-        PracticeScenario(
-            id = "job-interview",
-            title = "Answer 'Tell me about yourself'",
-            persona = "Hiring Manager (Sarah)",
-            topic = "Career Development",
-            level = "Beginner",
+        Course(
+            id = 14,
+            icon = "code",
             color = "#111114",
-            icon = "account-tie",
-            opening = "Welcome! Let's get started. Could you walk me through your background and why you're interested in this role?",
-            prompts = listOf(
-                "That's a great summary of your past experience. What specific project or achievement are you most proud of?",
-                "Impressive! How do you plan to bring those skills into our team's upcoming goals?"
-            ),
-            turnCount = 2
-        ),
-        PracticeScenario(
-            id = "salary-negotiation",
-            title = "Negotiate Project Rate",
-            persona = "Marketing Director (David)",
-            topic = "Business & Pricing",
+            category = "Code",
+            title = "Data Science & Machine Learning with Python",
+            instructor = "Dr. Aris Thorne",
+            rating = 4.9,
+            ratingsCount = "28,700",
+            price = "₦11,500",
+            isBestseller = true,
+            isHighestRated = true,
             level = "Advanced",
-            color = "#1f8f55",
-            icon = "cash-multiple",
-            opening = "We love your proposal, but our budget for this video campaign is 20% lower than your quote. Can you match our budget?",
-            prompts = listOf(
-                "I understand your constraints. If we adjust the deliverables slightly (e.g., 2 revisions instead of 4), we can fit your budget.",
-                "Sounds fair! Let's update the contract with those agreed revisions."
+            duration = "14.0 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
+            description = "Master NumPy, Pandas, Scikit-Learn, TensorFlow, neural networks, and predictive AI modeling.",
+            requirements = listOf("Basic Python knowledge."),
+            targetAudience = listOf("Data analysts, software engineers, and AI researchers."),
+            instructorTitle = "Chief AI Scientist",
+            instructorBio = "Dr. Aris holds a PhD in Machine Learning and leads AI research teams.",
+            instructorStudentsCount = "95,000+ Students",
+            reviews = listOf(
+                CourseReview("Liam W.", 5.0, "3 days ago", "The best machine learning course with real datasets!")
             ),
-            turnCount = 2
+            lessons = listOf(
+                Lesson(
+                    title = "Pandas DataFrames",
+                    task = "Write import command for pandas as pd",
+                    startCode = "",
+                    checkRegexes = listOf("import\\s+pandas\\s+as\\s+pd"),
+                    hint = "import pandas as pd",
+                    videoUri = videoUri(4),
+                    duration = "22 mins"
+                )
+            )
+        ),
+        Course(
+            id = 15,
+            icon = "film",
+            color = "#1f8f55",
+            category = "Creative",
+            title = "Music Production in Logic Pro & Ableton Live",
+            instructor = "Marcus Beats",
+            rating = 4.8,
+            ratingsCount = "11,200",
+            price = "₦8,900",
+            isBestseller = false,
+            isHotAndNew = true,
+            level = "Intermediate",
+            duration = "8.5 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&auto=format&fit=crop",
+            description = "Compose, record, arrange, mix, and master radio-ready tracks across Afrobeats, Pop, and Hip-Hop.",
+            requirements = listOf("Logic Pro X or Ableton Live DAW."),
+            targetAudience = listOf("Music producers, songwriters, and audio engineers."),
+            instructorTitle = "Grammy Nominated Audio Engineer",
+            instructorBio = "Marcus has produced multi-platinum records for billboard chart-topping artists.",
+            instructorStudentsCount = "32,000+ Students",
+            reviews = listOf(
+                CourseReview("Femi O.", 5.0, "5 days ago", "Mixing techniques increased my beat clarity 10x!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "Mixing Kick & Bass",
+                    task = "Type EQ frequency cut: 60Hz",
+                    startCode = "",
+                    checkRegexes = listOf("60\\s*hz"),
+                    hint = "Type: 60Hz",
+                    videoUri = videoUri(0),
+                    duration = "18 mins"
+                )
+            )
+        ),
+        Course(
+            id = 16,
+            icon = "dollar-sign",
+            color = "#0b6b3a",
+            category = "Business",
+            title = "Product Management Fundamentals: Concept to Launch",
+            instructor = "Sarah Lin",
+            rating = 4.7,
+            ratingsCount = "16,400",
+            price = "₦9,200",
+            isBestseller = true,
+            isHighestRated = false,
+            level = "All Levels",
+            duration = "6.8 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop",
+            description = "Learn product roadmap strategy, user stories, Agile Scrum sprints, OKRs, and market launch execution.",
+            requirements = listOf("No technical background required."),
+            targetAudience = listOf("Aspiring Product Managers and Tech Entrepreneurs."),
+            instructorTitle = "Director of Product Management",
+            instructorBio = "Sarah has led product teams launching apps used by over 50M active users.",
+            instructorStudentsCount = "48,000+ Students",
+            reviews = listOf(
+                CourseReview("Aisha Y.", 4.9, "1 week ago", "Super pragmatic product management framework.")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "User Stories",
+                    task = "Write user story format: As a user I want",
+                    startCode = "",
+                    checkRegexes = listOf("as a user i want"),
+                    hint = "As a user I want...",
+                    videoUri = videoUri(1),
+                    duration = "16 mins"
+                )
+            )
+        ),
+        Course(
+            id = 17,
+            icon = "code",
+            color = "#111114",
+            category = "Code",
+            title = "Cyber Security & Ethical Hacking Essentials",
+            instructor = "Alexandre Dubois",
+            rating = 4.8,
+            ratingsCount = "21,300",
+            price = "₦10,800",
+            isBestseller = true,
+            isHotAndNew = false,
+            level = "Intermediate",
+            duration = "11.0 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop",
+            description = "Learn network security, penetration testing, Wireshark packet analysis, and web vulnerability hunting.",
+            requirements = listOf("Basic networking concepts."),
+            targetAudience = listOf("Security analysts, IT professionals, and ethical hackers."),
+            instructorTitle = "Certified Ethical Hacker (CEH) & Security Auditor",
+            instructorBio = "Alexandre conducts penetration testing for Fortune 500 financial networks.",
+            instructorStudentsCount = "60,000+ Students",
+            reviews = listOf(
+                CourseReview("Musa H.", 5.0, "2 days ago", "Hands-on Wireshark & Nmap labs are top notch!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "Nmap Network Scanning",
+                    task = "Type Nmap command: nmap -sV",
+                    startCode = "",
+                    checkRegexes = listOf("nmap\\s+-sv"),
+                    hint = "nmap -sV target",
+                    videoUri = videoUri(2),
+                    duration = "20 mins"
+                )
+            )
+        ),
+        Course(
+            id = 18,
+            icon = "film",
+            color = "#1f8f55",
+            category = "Creative",
+            title = "Motion Graphics & VFX in After Effects",
+            instructor = "Clara Dupont",
+            rating = 4.6,
+            ratingsCount = "7,800",
+            price = "₦8,200",
+            isBestseller = false,
+            isHotAndNew = true,
+            level = "Intermediate",
+            duration = "7.8 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop",
+            description = "Create 2D/3D motion graphics, kinetic typography, logo reveals, and visual effects compositing.",
+            requirements = listOf("Adobe After Effects installed."),
+            targetAudience = listOf("Animators, video editors, and visual artists."),
+            instructorTitle = "Senior Motion Designer",
+            instructorBio = "Clara creates motion graphics for commercial television and streaming titles.",
+            instructorStudentsCount = "20,000+ Students",
+            reviews = listOf(
+                CourseReview("Dave C.", 4.7, "4 days ago", "Kinetic typography lesson was amazing!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "Keyframe Interpolation",
+                    task = "Type Easy Ease shortcut key: F9",
+                    startCode = "",
+                    checkRegexes = listOf("f9"),
+                    hint = "Type: F9",
+                    videoUri = videoUri(3),
+                    duration = "16 mins"
+                )
+            )
+        ),
+        Course(
+            id = 19,
+            icon = "dollar-sign",
+            color = "#0b6b3a",
+            category = "Business",
+            title = "Copywriting Masterclass: Words That Sell",
+            instructor = "Brooke Reynolds",
+            rating = 4.9,
+            ratingsCount = "17,900",
+            price = "₦7,800",
+            isBestseller = true,
+            isHighestRated = true,
+            level = "All Levels",
+            duration = "5.5 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&auto=format&fit=crop",
+            description = "Write high-converting sales pages, email marketing sequences, landing page headlines, and ad copy.",
+            requirements = listOf("Good command of written English."),
+            targetAudience = listOf("Copywriters, marketers, and business founders."),
+            instructorTitle = "7-Figure Direct Response Copywriter",
+            instructorBio = "Brooke's sales letters have generated over $25M in direct response revenue.",
+            instructorStudentsCount = "52,000+ Students",
+            reviews = listOf(
+                CourseReview("Joy N.", 5.0, "3 days ago", "AIDA framework breakdown changed how I write ad headlines!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "AIDA Formula",
+                    task = "Type 4 steps: Attention, Interest, Desire, Action",
+                    startCode = "",
+                    checkRegexes = listOf("attention.*interest.*desire.*action"),
+                    hint = "Attention Interest Desire Action",
+                    videoUri = videoUri(4),
+                    duration = "14 mins"
+                )
+            )
+        ),
+        Course(
+            id = 20,
+            icon = "code",
+            color = "#111114",
+            category = "Code",
+            title = "Flutter & Dart Mobile App Development",
+            instructor = "Praise Cyber",
+            rating = 4.8,
+            ratingsCount = "13,500",
+            price = "₦11,000",
+            isBestseller = true,
+            isHotAndNew = true,
+            level = "Beginner",
+            duration = "11.2 total hours",
+            imageUrl = "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&auto=format&fit=crop",
+            description = "Build beautiful cross-platform iOS and Android mobile apps from a single codebase using Flutter and Dart.",
+            requirements = listOf("No prior mobile app development experience required."),
+            targetAudience = listOf("Mobile app developers looking to build cross-platform apps."),
+            instructorTitle = "Lead Mobile Architect",
+            instructorBio = "Praise builds high-performance cross-platform iOS and Android applications.",
+            instructorStudentsCount = "50,000+ Students",
+            reviews = listOf(
+                CourseReview("Hamzat S.", 5.0, "Yesterday", "Best Flutter widget lifecycle explanation!")
+            ),
+            lessons = listOf(
+                Lesson(
+                    title = "StatelessWidget",
+                    task = "Declare class MyApp extends StatelessWidget",
+                    startCode = "",
+                    checkRegexes = listOf("class\\s+myapp\\s+extends\\s+statelesswidget"),
+                    hint = "class MyApp extends StatelessWidget",
+                    videoUri = videoUri(0),
+                    duration = "18 mins"
+                )
+            )
         )
     )
 }

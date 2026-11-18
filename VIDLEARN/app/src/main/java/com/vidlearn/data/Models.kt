@@ -49,25 +49,8 @@ data class Course(
     val reviews: List<CourseReview> = emptyList(),
     val qnaItems: List<QnAItem> = emptyList(),
     val lessons: List<Lesson>,
+    val imageUrl: String = "",
     val isCustom: Boolean = false
-)
-
-data class PracticeScenario(
-    val id: String,
-    val title: String,
-    val persona: String,
-    val topic: String,
-    val level: String,
-    val color: String,
-    val icon: String,
-    val opening: String,
-    val prompts: List<String>,
-    val turnCount: Int = 3
-)
-
-data class RoleMessage(
-    val from: String, // "coach", "learner", "feedback"
-    val text: String
 )
 
 enum class Screen {
@@ -76,10 +59,10 @@ enum class Screen {
     FAVORITES,
     COURSE_DETAIL,
     LEARN,
-    ROLEPLAY,
     CERTIFICATE,
     LOGIN,
-    CREATE_COURSE
+    CREATE_COURSE,
+    ADMIN
 }
 
 data class CheckResult(
