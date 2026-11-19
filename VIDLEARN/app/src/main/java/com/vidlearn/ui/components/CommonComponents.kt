@@ -65,6 +65,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
@@ -81,28 +82,84 @@ val MutedText = Color(0xFF6A6F73)
 val StarYellow = Color(0xFFE59819)
 
 @Composable
+fun VidlearnEmblem(
+    modifier: Modifier = Modifier,
+    light: Boolean = false,
+    scaleFactor: Float = 1.0f
+) {
+    val barColor = if (light) Color.White else DarkCharcoal
+    val tipColor = Color(0xFF10B981)
+
+    Row(
+        verticalAlignment = Alignment.Bottom,
+        horizontalArrangement = Arrangement.spacedBy((3 * scaleFactor).dp),
+        modifier = modifier
+    ) {
+        // Bar 1 (Short)
+        Box(
+            modifier = Modifier
+                .width((5 * scaleFactor).dp)
+                .height((12 * scaleFactor).dp)
+                .background(barColor, RoundedCornerShape((1.5f * scaleFactor).dp))
+        )
+        // Bar 2 (Medium)
+        Box(
+            modifier = Modifier
+                .width((5 * scaleFactor).dp)
+                .height((18 * scaleFactor).dp)
+                .background(barColor, RoundedCornerShape((1.5f * scaleFactor).dp))
+        )
+        // Bar 3 (Tall + Green Triangle Tip)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy((1 * scaleFactor).dp)
+        ) {
+            // Triangle tip
+            androidx.compose.foundation.Canvas(
+                modifier = Modifier.size((8 * scaleFactor).dp)
+            ) {
+                val path = androidx.compose.ui.graphics.Path().apply {
+                    moveTo(size.width / 2f, 0f)
+                    lineTo(size.width, size.height)
+                    lineTo(0f, size.height)
+                    close()
+                }
+                drawPath(path = path, color = tipColor)
+            }
+            // Pillar
+            Box(
+                modifier = Modifier
+                    .width((5 * scaleFactor).dp)
+                    .height((20 * scaleFactor).dp)
+                    .background(barColor, RoundedCornerShape(bottomStart = (1.5f * scaleFactor).dp, bottomEnd = (1.5f * scaleFactor).dp))
+            )
+        }
+    }
+}
+
+@Composable
 fun VidlearnLogo(
     modifier: Modifier = Modifier,
     light: Boolean = false,
+    fontSize: androidx.compose.ui.unit.TextUnit = 22.sp,
     onClick: (() -> Unit)? = null
 ) {
-    val annotatedString = buildAnnotatedString {
-        withStyle(SpanStyle(color = if (light) Color.White else PrimaryGreen, fontWeight = FontWeight.ExtraBold, fontSize = 22.sp)) {
-            append("Vid")
-        }
-        withStyle(SpanStyle(color = if (light) Color.White else DarkCharcoal, fontWeight = FontWeight.ExtraBold, fontSize = 22.sp)) {
-            append("learn")
-        }
-        withStyle(SpanStyle(color = SecondaryGreen, fontWeight = FontWeight.ExtraBold, fontSize = 22.sp)) {
-            append(".")
-        }
-    }
-
-    Box(
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier.then(
             if (onClick != null) Modifier.clickable { onClick() } else Modifier
         )
     ) {
+        VidlearnEmblem(light = light, scaleFactor = if (fontSize > 28.sp) 1.4f else 1.0f)
+        val annotatedString = buildAnnotatedString {
+            withStyle(SpanStyle(color = if (light) Color.White else DarkCharcoal, fontWeight = FontWeight.Bold, fontSize = fontSize)) {
+                append("vid")
+            }
+            withStyle(SpanStyle(color = Color(0xFF10B981), fontWeight = FontWeight.Bold, fontStyle = FontStyle.Italic, fontSize = fontSize)) {
+                append("learn")
+            }
+        }
         Text(text = annotatedString)
     }
 }

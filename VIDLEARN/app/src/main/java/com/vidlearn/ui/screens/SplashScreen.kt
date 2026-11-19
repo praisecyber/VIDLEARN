@@ -21,10 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -37,15 +34,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vidlearn.ui.components.DarkCharcoal
 import com.vidlearn.ui.components.PrimaryGreen
 import com.vidlearn.ui.components.SecondaryGreen
+import com.vidlearn.ui.components.VidlearnEmblem
 import kotlinx.coroutines.delay
 
 @Composable
@@ -88,11 +84,11 @@ fun SplashScreen(
         )
     )
 
-    val logoGradient = Brush.linearGradient(
+    val iconGradient = Brush.linearGradient(
         colors = listOf(
+            Color(0xFF34D399),
             PrimaryGreen,
-            SecondaryGreen,
-            Color(0xFF10B981)
+            SecondaryGreen
         )
     )
 
@@ -109,63 +105,53 @@ fun SplashScreen(
                 .scale(scale.value)
                 .alpha(alpha.value)
         ) {
-            // Glowing outer ring + Logo Emblem
+            // Glowing outer ring + App Icon Green Badge
             Box(contentAlignment = Alignment.Center) {
                 // Pulse Glow Background
                 Box(
                     modifier = Modifier
-                        .size(120.dp)
+                        .size(130.dp)
                         .scale(pulseScale)
                         .clip(CircleShape)
-                        .background(PrimaryGreen.copy(alpha = 0.2f))
+                        .background(PrimaryGreen.copy(alpha = 0.25f))
                 )
 
-                // Main Logo Badge
+                // Main App Icon Badge (Green version from brand guide)
                 Box(
                     modifier = Modifier
                         .size(100.dp)
-                        .clip(RoundedCornerShape(24.dp))
-                        .background(logoGradient)
-                        .border(2.dp, Color(0xFF34D399).copy(alpha = 0.5f), RoundedCornerShape(24.dp)),
+                        .clip(RoundedCornerShape(26.dp))
+                        .background(iconGradient)
+                        .border(2.dp, Color(0xFF6EE7B7).copy(alpha = 0.6f), RoundedCornerShape(26.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Text(
-                            text = "V",
-                            color = Color.White,
-                            fontSize = 44.sp,
-                            fontWeight = FontWeight.Black
-                        )
-                        Icon(
-                            imageVector = Icons.Filled.PlayArrow,
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(32.dp)
-                        )
-                    }
+                    VidlearnEmblem(light = true, scaleFactor = 2.2f)
                 }
             }
 
-            Spacer(modifier = Modifier.height(28.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
-            // Animated Brand Name Title
-            val annotatedLogo = buildAnnotatedString {
-                withStyle(SpanStyle(color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 40.sp)) {
-                    append("Vid")
-                }
-                withStyle(SpanStyle(color = Color(0xFF34D399), fontWeight = FontWeight.ExtraBold, fontSize = 40.sp)) {
-                    append("learn")
-                }
-                withStyle(SpanStyle(color = SecondaryGreen, fontWeight = FontWeight.ExtraBold, fontSize = 40.sp)) {
-                    append(".")
-                }
+            // Official Logo Typography: vid (bold) + learn (bold italic green)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "vid",
+                    color = Color.White,
+                    fontSize = 42.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "learn",
+                    color = Color(0xFF34D399),
+                    fontSize = 42.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic
+                )
             }
-            Text(text = annotatedLogo)
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(10.dp))
 
             // Tagline Pill Badge
             Box(
