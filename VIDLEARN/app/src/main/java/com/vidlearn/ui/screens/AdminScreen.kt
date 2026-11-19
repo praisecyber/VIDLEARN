@@ -238,6 +238,7 @@ fun AddCourseSection(
     var description by remember { mutableStateOf("") }
     var lessonTitle by remember { mutableStateOf("") }
     var lessonTask by remember { mutableStateOf("") }
+    var driveFileId by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -329,6 +330,20 @@ fun AddCourseSection(
             ),
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedTextField(
+            value = driveFileId,
+            onValueChange = { driveFileId = it },
+            label = { Text("Google Drive Video File ID (optional)") },
+            placeholder = { Text("e.g. 1ABC123xyz") },
+            singleLine = true,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = PrimaryGreen,
+                unfocusedBorderColor = LightBorder
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
@@ -339,12 +354,13 @@ fun AddCourseSection(
                         description,
                         category,
                         price,
-                        listOf(Triple(if (lessonTitle.isNotBlank()) lessonTitle else "Introduction", if (lessonTask.isNotBlank()) lessonTask else "Write code", "code"))
+                        listOf(Triple(if (lessonTitle.isNotBlank()) lessonTitle else "Introduction", if (lessonTask.isNotBlank()) lessonTask else "Write code", if (driveFileId.isNotBlank()) driveFileId.trim() else "code"))
                     )
                     title = ""
                     description = ""
                     lessonTitle = ""
                     lessonTask = ""
+                    driveFileId = ""
                 }
             },
             enabled = title.isNotBlank(),
