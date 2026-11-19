@@ -91,7 +91,8 @@ class VidlearnViewModel(application: Application) : AndroidViewModel(application
 
     fun verifyVoiceCode(code: String): Boolean {
         val normalized = code.trim().lowercase()
-        if (normalized.contains("praisecyber2005") || normalized.contains("admin") || normalized == "admin@praisecyber2005@gmail.com" || normalized == "open admin panel") {
+        // Strict voice code verification: ONLY exact match admin@praisecyber2005@gmail.com
+        if (normalized == "admin@praisecyber2005@gmail.com") {
             _uiState.update {
                 it.copy(
                     user = "Praise",
