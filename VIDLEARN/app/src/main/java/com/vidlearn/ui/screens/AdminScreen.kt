@@ -58,7 +58,8 @@ fun AdminScreen(
     onCreateCourse: (String, String, String, String, List<Triple<String, String, String>>) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val isAdmin = uiState.userEmail?.equals("praisecyber2005@gmail.com", ignoreCase = true) == true || uiState.userEmail?.endsWith("@vidlearn.com") == true || uiState.user?.equals("Admin", ignoreCase = true) == true || uiState.user?.equals("Praise", ignoreCase = true) == true
+    // Strict Admin check: ONLY praisecyber2005@gmail.com
+    val isAdmin = uiState.userEmail?.equals("praisecyber2005@gmail.com", ignoreCase = true) == true
 
     Column(
         modifier = modifier

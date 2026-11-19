@@ -7,7 +7,8 @@ data class Lesson(
     val checkRegexes: List<String>,
     val hint: String,
     val videoUri: String,
-    val duration: String = "10 mins"
+    val duration: String = "10 mins",
+    val driveFileId: String? = null
 )
 
 data class CourseReview(

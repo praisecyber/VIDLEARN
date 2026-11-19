@@ -58,7 +58,8 @@ fun LoginScreen(
         }
     }
 
-    val isAdmin = userEmail?.equals("praisecyber2005@gmail.com", ignoreCase = true) == true || userEmail?.endsWith("@vidlearn.com") == true || userName?.equals("Admin", ignoreCase = true) == true || userName?.equals("Praise", ignoreCase = true) == true
+    // Strict admin check - ONLY praisecyber2005@gmail.com
+    val isAdmin = userEmail?.equals("praisecyber2005@gmail.com", ignoreCase = true) == true
 
     Column(
         modifier = modifier
@@ -243,22 +244,6 @@ fun LoginScreen(
                         fontWeight = FontWeight.Medium
                     )
                 }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                onClick = {
-                    onLogin("Admin", "admin@vidlearn.com")
-                    onOpenAdmin?.invoke()
-                },
-                colors = ButtonDefaults.buttonColors(containerColor = DarkCharcoal),
-                shape = RoundedCornerShape(2.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp)
-            ) {
-                Text(text = "Quick Login as Admin", color = Color.White, fontWeight = FontWeight.Bold)
             }
         }
     }

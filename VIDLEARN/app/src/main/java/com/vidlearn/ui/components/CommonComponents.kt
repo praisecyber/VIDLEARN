@@ -689,7 +689,8 @@ fun BottomNavigationBar(
     userEmail: String? = null,
     userName: String? = null
 ) {
-    val isAdmin = userEmail?.equals("praisecyber2005@gmail.com", ignoreCase = true) == true || userEmail?.endsWith("@vidlearn.com") == true || userName?.equals("Admin", ignoreCase = true) == true || userName?.equals("Praise", ignoreCase = true) == true
+    // Strict admin check: ONLY praisecyber2005@gmail.com
+    val isAdmin = userEmail?.equals("praisecyber2005@gmail.com", ignoreCase = true) == true
 
     NavigationBar(
         containerColor = Color.White,

@@ -334,14 +334,19 @@ class VidlearnViewModel(application: Application) : AndroidViewModel(application
         if (title.isBlank() || validRows.isEmpty()) return
 
         val nextId = 100 + _uiState.value.customCourses.size
-        val lessons = validRows.mapIndexed { _, (lTitle, lTask, lWord) ->
+        val lessons = validRows.mapIndexed { _, (lTitle, lTask, driveOrWord) ->
+            val isDriveId = driveOrWord.length > 10 && !driveOrWord.contains(" ")
+            val videoUrl = if (isDriveId) "http://10.0.2.2:3000/api/drive/stream/${driveOrWord.trim()}" else SampleData.courses.first().lessons.first().videoUri
+            val driveId = if (isDriveId) driveOrWord.trim() else null
+
             Lesson(
                 title = lTitle.trim(),
                 task = if (lTask.isBlank()) "Write something about this lesson." else lTask.trim(),
                 startCode = "",
-                checkRegexes = listOf(if (lWord.isNotBlank()) Regex.escape(lWord.trim()) else "\\w+"),
-                hint = if (lWord.isNotBlank()) "Include the word: ${lWord.trim()}" else "Write anything",
-                videoUri = SampleData.courses.first().lessons.first().videoUri
+                checkRegexes = listOf(if (driveOrWord.isNotBlank() && !isDriveId) Regex.escape(driveOrWord.trim()) else "\\w+"),
+                hint = if (driveOrWord.isNotBlank() && !isDriveId) "Include the word: ${driveOrWord.trim()}" else "Complete the task",
+                videoUri = videoUrl,
+                driveFileId = driveId
             )
         }
 
