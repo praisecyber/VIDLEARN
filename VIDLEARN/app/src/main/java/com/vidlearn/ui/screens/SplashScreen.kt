@@ -49,15 +49,15 @@ fun SplashScreen(
     onSplashFinished: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val scale = remember { Animatable(0.5f) }
+    val scale = remember { Animatable(0.4f) }
     val alpha = remember { Animatable(0f) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "pulse")
     val pulseScale by infiniteTransition.animateFloat(
         initialValue = 1f,
-        targetValue = 1.15f,
+        targetValue = 1.18f,
         animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = FastOutSlowInEasing),
+            animation = tween(1200, easing = FastOutSlowInEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "pulseScale"
@@ -66,21 +66,21 @@ fun SplashScreen(
     LaunchedEffect(Unit) {
         scale.animateTo(
             targetValue = 1f,
-            animationSpec = tween(durationMillis = 900, easing = FastOutSlowInEasing)
+            animationSpec = tween(durationMillis = 1000, easing = FastOutSlowInEasing)
         )
         alpha.animateTo(
             targetValue = 1f,
-            animationSpec = tween(durationMillis = 700)
+            animationSpec = tween(durationMillis = 800)
         )
-        delay(1600)
+        delay(1800)
         onSplashFinished()
     }
 
     val gradientBg = Brush.verticalGradient(
         colors = listOf(
-            Color(0xFF0F172A),
+            Color(0xFF070A0F),
             DarkCharcoal,
-            Color(0xFF070A0F)
+            Color(0xFF0B1910)
         )
     )
 
@@ -88,7 +88,8 @@ fun SplashScreen(
         colors = listOf(
             Color(0xFF34D399),
             PrimaryGreen,
-            SecondaryGreen
+            SecondaryGreen,
+            Color(0xFF0A5A38)
         )
     )
 
@@ -105,72 +106,72 @@ fun SplashScreen(
                 .scale(scale.value)
                 .alpha(alpha.value)
         ) {
-            // Glowing outer ring + App Icon Green Badge
+            // Glowing outer ring + App Icon Green Badge (Larger, premium emblem)
             Box(contentAlignment = Alignment.Center) {
                 // Pulse Glow Background
                 Box(
                     modifier = Modifier
-                        .size(130.dp)
+                        .size(160.dp)
                         .scale(pulseScale)
                         .clip(CircleShape)
-                        .background(PrimaryGreen.copy(alpha = 0.25f))
+                        .background(PrimaryGreen.copy(alpha = 0.3f))
                 )
 
                 // Main App Icon Badge (Green version from brand guide)
                 Box(
                     modifier = Modifier
-                        .size(100.dp)
-                        .clip(RoundedCornerShape(26.dp))
+                        .size(120.dp)
+                        .clip(RoundedCornerShape(32.dp))
                         .background(iconGradient)
-                        .border(2.dp, Color(0xFF6EE7B7).copy(alpha = 0.6f), RoundedCornerShape(26.dp)),
+                        .border(3.dp, Color(0xFF6EE7B7).copy(alpha = 0.7f), RoundedCornerShape(32.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    VidlearnEmblem(light = true, scaleFactor = 2.2f)
+                    VidlearnEmblem(light = true, scaleFactor = 3.2f)
                 }
             }
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(36.dp))
 
             // Official Logo Typography: vid (bold) + learn (bold italic green)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 Text(
                     text = "vid",
                     color = Color.White,
-                    fontSize = 42.sp,
+                    fontSize = 46.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = "learn",
                     color = Color(0xFF34D399),
-                    fontSize = 42.sp,
+                    fontSize = 46.sp,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic
                 )
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(12.dp))
 
             // Tagline Pill Badge
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(20.dp))
-                    .background(Color(0xFF1E293B))
+                    .background(Color(0xFF1E293B).copy(alpha = 0.9f))
                     .border(1.dp, Color(0xFF334155), RoundedCornerShape(20.dp))
-                    .padding(horizontal = 16.dp, vertical = 6.dp)
+                    .padding(horizontal = 18.dp, vertical = 7.dp)
             ) {
                 Text(
                     text = "WATCH  •  PRACTICE  •  MASTER",
                     color = Color(0xFF94A3B8),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    letterSpacing = 1.sp
+                    letterSpacing = 1.2.sp
                 )
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(60.dp))
 
             // Smooth Progress Bar
             Row(
@@ -180,9 +181,9 @@ fun SplashScreen(
                 CircularProgressIndicator(
                     color = Color(0xFF34D399),
                     strokeWidth = 3.dp,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(26.dp)
                 )
-                Spacer(modifier = Modifier.width(10.dp))
+                Spacer(modifier = Modifier.width(12.dp))
                 Text(
                     text = "Loading workspace...",
                     color = Color(0xFF64748B),
